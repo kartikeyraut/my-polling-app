@@ -1,0 +1,116 @@
+<html>
+<head>
+    <style type="text/css">
+        body
+        {
+          margin:0px;
+          padding:0px;	
+        }
+        #main
+        {
+            width:100%;
+            height:100%;
+            background-color:#FF9;
+            margin-left:auto;
+            margin-right:auto;
+        }
+        #header
+        {
+            height:200px;
+            background-color:#F90;
+        }
+        #leftLogo img,#rightLogo img
+        {
+            width:100%;
+            height:100%;
+        }
+        #title
+        {
+            width:60%;
+            height:200px;
+            background-color:#999;
+            float:left;
+        }
+        #title h1
+        {
+            color:Yellow;
+            text-align:center;
+        }
+        #title h2
+        {
+            text-align:center;
+            color:white;
+        }
+
+        #rightLogo
+        {
+            width:40%;
+            height:200px;
+            background-color:#F00;
+        float:left;
+        }
+        table 
+        {
+            border-collapse: collapse;
+            width: 100%;
+            color: #588c7e;
+            font-family: monospace;
+            font-size: 25px;
+            text-align: left;
+        }
+        th 
+        {
+            background-color: #588c7e;
+            color: yellow;
+        }
+        tr:nth-child(even) 
+        {
+            background-color: #f2f2f2;
+        }  
+        #footer
+        {
+            position: fixed;
+            height:40px;
+            width:100%;
+            background-color:black;
+            color:white;
+            text-align:center;
+            font-size:22px;
+            line-height:40px;
+            bottom:0px;
+             
+        }
+    </style>
+</head>
+<body>
+    <div id="main">
+        <div id="header">
+            <div id="title">
+                <h1><br>PRACTICE_PROJECT</h1>
+                <h2>MY POLLING APP</h2>
+            </div><!--closing of title-->
+            <div id="rightLogo">
+                <img src="https://i.ytimg.com/vi/IHedPOvb9uE/maxresdefault.jpg"  />
+            </div><!--closing of rightLogo-->
+        </div><!--closing of header-->
+        <table>
+            <tr>
+                <th>Question's List</th>
+            </tr>
+            {% if latest_question_list %}
+                {% for question in latest_question_list %}
+                    <tr><td><li><a href="{% url 'polls:detail' question.id %}">{{ question.question_text }}</a></li></td>
+                    <!-- 
+                        a_href="/polls/{{ question.id }}/" hardcoded, tightly-coupled approach URLs hai , to baadme difficult ho jayega                             change karna agar bahot saare template hoge but path()[polls/urls me jo function hai] functions me argument hota hai                         so you can remove a reliance on specific URL paths defined in your url configurations by using the above template                           template tag
+                    -->
+                {% endfor %}
+            {% else %}
+                <p>No polls are available.</p>
+            {% endif %}
+       </table>
+       <div id="footer">
+            All rights reserved to Kartikey Raut
+        </div><!--closing of footer-->
+    </div><!--closing of main-->
+</body>
+</html>
